@@ -9,4 +9,8 @@ let getAllLectures = (req, res) => {
     lectureModel.getAllLectures(res);
 };
 
-module.exports = { createLecture, getAllLectures};
+let getLecturesByInstructor = (req, res) =>{
+    lectureModel.getLecturesByInstructor(req.params.instructorId, res)
+}
+
+module.exports = { createLecture, getAllLectures, getLecturesByInstructor};
