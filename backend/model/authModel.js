@@ -30,4 +30,16 @@ let loginAccount = (obj, res) =>{
     .finally (()=>client.close())
 }
 
-module.exports = { createAccount, loginAccount };
+let getInstructors = (res) => {
+    let client = new MongoClient(url);
+    client.connect();
+    let db = client.db("lecture-scheduling");
+    let coll = db.collection("users");
+
+    coll.find({ role: "instructor" }).toArray()
+    .then((result) => res.send(result))
+    .catch((err) => res.send(err))
+    .finally(() => client.close());
+};
+
+module.exports = { createAccount, loginAccount, getInstructors };

@@ -28,4 +28,16 @@ let createCourse = (obj, res) =>{
     .finally (()=>client.close())
 }
 
-module.exports = { createCourse };
+let getAllCourses = (res) => {
+    let client = new MongoClient(url);
+    client.connect();
+    let db = client.db("lecture-scheduling");
+    let coll = db.collection("courses");
+
+    coll.find().toArray()
+    .then((result) => res.send(result))
+    .catch((err) => res.send(err))
+    .finally(() => client.close());
+};
+
+module.exports = { createCourse, getAllCourses };

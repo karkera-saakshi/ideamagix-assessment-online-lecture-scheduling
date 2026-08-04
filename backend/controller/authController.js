@@ -9,5 +9,8 @@ let loginAccount = (req, res) =>{
     authModel.loginAccount(req.body, res);
 }
 
+let getInstructors = (req, res) => {
+    authModel.getInstructors(res);
+};
 
-module.exports = { createAccount, loginAccount};
+module.exports = { createAccount, loginAccount, getInstructors };
