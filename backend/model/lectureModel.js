@@ -16,16 +16,18 @@ let createLecture = (obj, res) =>{
     coll.findOne({ instructorId: obj.instructorId, date: obj.date })
     .then((existingLecture) => {
         if (existingLecture) {
-            return res.send({ message: "Instructor already assigned on this date" });
+            return res.status(400).send({ message: "Instructor already assigned on this date" });
         }
         let newLecture = {
             courseId: obj.courseId,
+            courseName: obj.courseName,
             batchName: obj.batchName,
             instructorId: obj.instructorId,
             instructorName: obj.instructorName,
-            date: obj.date
+            date: obj.date,
+            time: obj.time
         };
-        return coll.insertOne(newLecture).then((result) => res.send(result));
+        return coll.insertOne(newLecture).then((result) => res.status(201).send(result));
     })
     .catch((err) => res.send(err))
     .finally(() => client.close());

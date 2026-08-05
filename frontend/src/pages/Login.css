@@ -1,5 +1,5 @@
 /* Layout Container */
-.login-container {
+.container {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@
 }
 
 /* Card Styling */
-.login-card {
+.card {
   background: #ffffff;
   width: 100%;
   max-width: 420px;
@@ -23,19 +23,19 @@
 }
 
 /* Header */
-.login-header {
+.header {
   text-align: center;
   margin-bottom: 28px;
 }
 
-.login-header h2 {
+.header h2 {
   font-size: 1.65rem;
   font-weight: 700;
   color: #0f172a;
   margin: 0 0 6px 0;
 }
 
-.login-header p {
+.header p {
   font-size: 0.875rem;
   color: #64748b;
   margin: 0;
@@ -72,7 +72,7 @@
   color: #334155;
 }
 
-.input-wrapper {
+.input {
   position: relative;
   display: flex;
   align-items: center;
@@ -86,7 +86,8 @@
   transition: color 0.2s ease;
 }
 
-.input-wrapper input {
+.input input,
+.input select {
   width: 100%;
   padding: 11px 14px 11px 42px;
   font-size: 0.925rem;
@@ -98,12 +99,13 @@
   transition: all 0.2s ease;
 }
 
-.input-wrapper input:focus {
+.input input:focus,
+.input select:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
-.input-wrapper input:focus + .input-icon {
+.input input:focus + .input-icon {
   color: #2563eb;
 }
 
@@ -140,12 +142,12 @@
 }
 
 /* Footer Link */
-.login-footer {
+.footer {
   margin-top: 24px;
   text-align: center;
 }
 
-.login-footer p {
+.footer p {
   font-size: 0.875rem;
   color: #64748b;
   margin: 0;
