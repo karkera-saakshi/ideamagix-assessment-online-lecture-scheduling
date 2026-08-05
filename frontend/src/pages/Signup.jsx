@@ -23,7 +23,7 @@ const Signup = () => {
 
   let handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:9000/api/auth/create", formData )
+    axios.post("https://ideamagix-assessment-online-lecture.onrender.com/api/auth/create", formData )
       .then(() => {
         alert("Account created successfully!");
         setFormData({

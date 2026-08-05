@@ -20,7 +20,7 @@ const Login = () => {
 
   let handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:9000/api/auth/login", formData)
+    axios.post("https://ideamagix-assessment-online-lecture.onrender.com/api/auth/login", formData)
       .then((res) => {
         alert("Logged in successfully!");
         localStorage.setItem('user', JSON.stringify(res.data));

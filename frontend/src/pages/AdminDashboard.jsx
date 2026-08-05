@@ -32,7 +32,7 @@ const AdminDashboard = () => {
 
   const fetchCourses = async () => {
     try {
-      const res = await axios.get('http://localhost:9000/api/course/list');
+      const res = await axios.get('https://ideamagix-assessment-online-lecture.onrender.com/api/course/list');
       setCourses(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.log('Failed to fetch courses:', err);
@@ -41,7 +41,7 @@ const AdminDashboard = () => {
 
   const fetchInstructors = async () => {
     try {
-      const res = await axios.get('http://localhost:9000/api/auth/instructors');
+      const res = await axios.get('https://ideamagix-assessment-online-lecture.onrender.com/api/auth/instructors');
       setInstructors(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.log('Failed to fetch instructors:', err);
@@ -50,7 +50,7 @@ const AdminDashboard = () => {
 
   const fetchLectures = async () => {
     try {
-      const res = await axios.get(`http://localhost:9000/api/lectures/getAllLectures?t=${Date.now()}`);
+      const res = await axios.get(`https://ideamagix-assessment-online-lecture.onrender.com/api/lectures/getAllLectures?t=${Date.now()}`);
       setLectures(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.log('Failed to fetch lectures:', err);
@@ -70,7 +70,7 @@ const AdminDashboard = () => {
       batches: formattedBatches
     };
 
-    axios.post('http://localhost:9000/api/course/create', payload)
+    axios.post('https://ideamagix-assessment-online-lecture.onrender.com/api/course/create', payload)
       .then(() => {
         alert('Course added successfully!');
         setCourseForm({ name: '', level: 'Beginner', description: '', image: '', batchNames: '' });
@@ -93,7 +93,7 @@ const AdminDashboard = () => {
       instructorName: selectedInstructor ? selectedInstructor.name : ''
     };
 
-    axios.post("http://localhost:9000/api/lectures/create", payload)
+    axios.post("https://ideamagix-assessment-online-lecture.onrender.com/api/lectures/create", payload)
     .then(() => {
         alert("Lecture scheduled successfully!");
         setLectureForm({ courseId: '', instructorId: '', date: '', time: '', batchName: '' });

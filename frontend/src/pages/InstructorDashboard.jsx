@@ -23,7 +23,7 @@ const InstructorDashboard = () => {
   const fetchLectures = () => {
     setLoading(true);
   
-    axios.get(`http://localhost:9000/api/lectures/instructor/${instructorId}`)
+    axios.get(`https://ideamagix-assessment-online-lecture.onrender.com/api/lectures/instructor/${instructorId}`)
     .then((res) => {
       setLectures(Array.isArray(res.data) ? res.data : []);
       setError(null);
