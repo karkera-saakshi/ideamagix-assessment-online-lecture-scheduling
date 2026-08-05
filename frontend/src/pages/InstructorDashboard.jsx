@@ -6,42 +6,60 @@ const InstructorDashboard = () => {
   const [lectures, setLectures] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-  const instructorId = storedUser._id || storedUser.id;
-  const name = storedUser.name || 'Instructor';
+  const [instructorInfo, setInstructorInfo] = useState({ id: null, name: 'Instructor' });
 
   useEffect(() => {
-    if (instructorId) {
-      fetchLectures();
-    } else {
+    const rawUserData = localStorage.getItem('user');
+
+    if (!rawUserData) {
       setLoading(false);
       setError('No logged-in instructor session found. Please log in.');
+      return;
     }
-  }, [instructorId]);
 
-  const fetchLectures = () => {
-    setLoading(true);
-  
-    axios.get(`https://ideamagix-assessment-online-lecture.onrender.com/api/lectures/instructor/${instructorId}`)
-    .then((res) => {
-      setLectures(Array.isArray(res.data) ? res.data : []);
-      setError(null);
-    })
-    .catch((err) => {
-      console.error('Failed to fetch assigned lectures:', err);
-      setError('Failed to load your assigned lectures.');
-    })
-    .finally(() => {
+    try {
+      const parsedUser = JSON.parse(rawUserData);
+      
+      const foundId = parsedUser._id || parsedUser.id || parsedUser.instructorId;
+      const foundName = parsedUser.name || parsedUser.username || 'Instructor';
+
+      if (foundId) {
+        setInstructorInfo({ id: foundId, name: foundName });
+        fetchLectures(foundId);
+      } else {
+        setLoading(false);
+        setError('User session invalid (ID missing). Please log in again.');
+      }
+    } catch (e) {
+      console.error('Error parsing local storage user:', e);
       setLoading(false);
-    });
+      setError('Corrupted session data. Please log in again.');
+    }
+  }, []);
+
+  const fetchLectures = (id) => {
+    setLoading(true);
+
+    axios
+      .get(`https://ideamagix-assessment-online-lecture.onrender.com/api/lectures/instructor/${id}`)
+      .then((res) => {
+        setLectures(Array.isArray(res.data) ? res.data : []);
+        setError(null);
+      })
+      .catch((err) => {
+        console.error('Failed to fetch assigned lectures:', err);
+        setError('Failed to load your assigned lectures.');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
     <div className="lecture-container">
       <header className="main-header">
         <div>
-          <h1>Welcome, {name}!</h1>
+          <h1>Welcome, {instructorInfo.name}!</h1>
           <p>Here is the list of all lectures assigned to you</p>
         </div>
       </header>
@@ -68,7 +86,7 @@ const InstructorDashboard = () => {
                 
                 <div className="lecture-card-header">
                   <div className="course-badge">
-                    <h3>{lec.courseName || 'Unspecified Course'}</h3>
+                    <h3>{lec.courseName || lec.course || 'Unspecified Course'}</h3>
                   </div>
                   {lec.date && <span className="lecture-date">{lec.date}</span>}
                 </div>
