@@ -1,0 +1,25 @@
+[
+  {
+    "_id": {
+      "$oid": "6a72159aaf755974347ca174"
+    },
+    "name": "Java Spring Boot Masterclass",
+    "level": "Beginner",
+    "description": "Build robust backends with Java and Spring Boot.",
+    "image": "https://example.com/java-course.png",
+    "batches": []
+  },
+  {
+    "_id": {
+      "$oid": "6a72d05403e24e17494d0dcf"
+    },
+    "name": "Web Technology",
+    "level": "Intermediate",
+    "description": "This course will cover intermediate level of web development and will focus on backend development",
+    "image": "",
+    "batches": [
+      "Batch 1",
+      "Batch 4"
+    ]
+  }
+]

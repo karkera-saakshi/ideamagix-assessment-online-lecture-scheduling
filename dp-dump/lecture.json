@@ -1,0 +1,12 @@
+{
+  "_id": {
+    "$oid": "6a72e7cc71d384406ed9461a"
+  },
+  "courseId": "6a72159aaf755974347ca174",
+  "courseName": "Java Spring Boot Masterclass",
+  "batchName": "Batch 1",
+  "instructorId": "6a72e75971d384406ed94618",
+  "instructorName": "Saakshi Karkera",
+  "date": "2026-06-12",
+  "time": "10AM - 12AM"
+}
