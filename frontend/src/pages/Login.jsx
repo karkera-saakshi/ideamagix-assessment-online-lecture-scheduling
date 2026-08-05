@@ -23,7 +23,7 @@ const Login = () => {
     axios.post("http://localhost:9000/api/auth/login", formData)
       .then((res) => {
         alert("Logged in successfully!");
-        
+        localStorage.setItem('user', JSON.stringify(res.data));
         if (formData.role === 'admin') {
           navigate('/admin');
         } 
