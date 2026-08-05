@@ -19,28 +19,33 @@ const Login = () => {
   };
 
   let handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post("https://ideamagix-assessment-online-lecture.onrender.com/api/auth/login", formData)
-      .then((res) => {
-        alert("Logged in successfully!");
-        localStorage.setItem('user', JSON.stringify(res.data));
-        if (formData.role === 'admin') {
-          navigate('/admin');
-        } 
-        else {
-          navigate('/instructor');
-        }
-
-        setFormData({
-          email: '',
-          password: '',
-          role: 'instructor',
-        });
-      })
-      .catch(() => {
-        alert("Error logging in.");
+  e.preventDefault();
+  axios
+    .post("https://ideamagix-assessment-online-lecture.onrender.com/api/auth/login", formData)
+    .then((res) => {
+      const userObj = res.data.user || res.data;
+      if (!userObj || typeof userObj !== 'object' || Object.keys(userObj).length === 0) {
+        alert("Login failed: Invalid server response.");
+        return;
+      }
+      alert("Logged in successfully!");
+      localStorage.setItem('user', JSON.stringify(userObj));
+      if (formData.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/instructor');
+      }
+      setFormData({
+        email: '',
+        password: '',
+        role: 'instructor',
       });
-  };
+    })
+    .catch((err) => {
+      console.error("Login Error:", err);
+      alert("Error logging in.");
+    });
+};
 
   
   return (
