@@ -44,15 +44,22 @@ let getAllLectures = (res) =>{
     .finally(()=>client.close())
 }
 
-let getLecturesByInstructor = (instructorId, res) =>{
+let getLecturesByInstructor = (instructorId, res) => {
     let client = new MongoClient(url);
-    client.connect();
-    let db = client.db("lecture-scheduling");
-    let coll = db.collection("lecture");
-    coll.find({ instructorId: instructorId }).toArray()
-    .then((result) => res.send(result))
-    .catch((err) => res.send(err))
-    .finally(() => client.close());
-}
+    client.connect()
+        .then(() => {
+            let db = client.db("lecture-scheduling");
+            let coll = db.collection("lecture");
 
+            let queryConditions = [{ instructorId: instructorId }];
+            if (ObjectId.isValid(instructorId)) {
+                queryConditions.push({ instructorId: new ObjectId(instructorId) });
+            }
+
+            return coll.find({ $or: queryConditions }).toArray();
+        })
+        .then((result) => res.status(200).send(result))
+        .catch((err) => res.status(500).send(err))
+        .finally(() => client.close());
+};
 module.exports = { createLecture, getAllLectures, getLecturesByInstructor };
