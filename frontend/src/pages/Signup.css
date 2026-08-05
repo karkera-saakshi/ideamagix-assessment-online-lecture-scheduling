@@ -1,5 +1,5 @@
 /* Layout Container */
-.signup-container {
+.signupContainer {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@
 }
 
 /* Card Styling */
-.signup-card {
+.signupCard {
   background: #ffffff;
   width: 100%;
   max-width: 440px;
@@ -54,7 +54,7 @@
 }
 
 /* Form Controls */
-.signup-form {
+.signupForm {
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -72,7 +72,7 @@
   color: #334155;
 }
 
-.input-wrapper {
+.inputContainer {
   position: relative;
   display: flex;
   align-items: center;
@@ -86,8 +86,8 @@
   transition: color 0.2s ease;
 }
 
-.input-wrapper input,
-.input-wrapper select {
+.inputContainer input,
+.inputContainer select {
   width: 100%;
   padding: 11px 14px 11px 42px;
   font-size: 0.925rem;
@@ -100,18 +100,18 @@
   appearance: none;
 }
 
-.input-wrapper input:focus,
-.input-wrapper select:focus {
+.inputContainer input:focus,
+.inputContainer select:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
-.input-wrapper input:focus + .input-icon,
-.input-wrapper select:focus + .input-icon {
+.inputContainer input:focus + .input-icon,
+.inputContainer select:focus + .input-icon {
   color: #2563eb;
 }
 
-.input-wrapper select {
+.inputContainer select {
   cursor: pointer;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%94a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -119,7 +119,7 @@
 }
 
 /* Primary Button (Blue Focus) */
-.submit-btn {
+.submitBtn {
   margin-top: 8px;
   width: 100%;
   padding: 12px;
@@ -137,15 +137,15 @@
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.submit-btn:hover {
+.submitBtn:hover {
   background-color: #1d4ed8;
 }
 
-.submit-btn:active {
+.submitBtn:active {
   transform: scale(0.99);
 }
 
-.submit-btn:disabled {
+.submitBtn:disabled {
   background-color: #93c5fd;
   cursor: not-allowed;
 }

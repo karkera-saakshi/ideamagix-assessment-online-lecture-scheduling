@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { User, Mail, Lock, ShieldCheck, UserPlus } from 'lucide-react';
 import './Signup.css';
 
 const Signup = () => {
@@ -10,7 +9,7 @@ const Signup = () => {
     name: '',
     email: '',
     password: '',
-    role: 'instructor', // Default selection
+    role: 'instructor', 
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -40,8 +39,8 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container">
-      <div className="signup-card">
+    <div className="signupContainer">
+      <div className="signupCard">
         <div className="signup-header">
           <h2>Create Account</h2>
           <p>Register as an Admin or Instructor to get started</p>
@@ -49,11 +48,10 @@ const Signup = () => {
 
         {error && <div className="error-badge">{error}</div>}
 
-        <form onSubmit={handleSubmit} className="signup-form">
+        <form onSubmit={handleSubmit} className="signupForm">
           <div className="form-group">
             <label htmlFor="name">Full Name</label>
-            <div className="input-wrapper">
-              <User className="input-icon" size={18} />
+            <div className="inputContainer">
               <input
                 type="text"
                 id="name"
@@ -68,8 +66,7 @@ const Signup = () => {
 
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
-            <div className="input-wrapper">
-              <Mail className="input-icon" size={18} />
+            <div className="inputContainer">
               <input
                 type="email"
                 id="email"
@@ -84,8 +81,7 @@ const Signup = () => {
 
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <div className="input-wrapper">
-              <Lock className="input-icon" size={18} />
+            <div className="inputContainer">
               <input
                 type="password"
                 id="password"
@@ -100,8 +96,7 @@ const Signup = () => {
 
           <div className="form-group">
             <label htmlFor="role">Select Role</label>
-            <div className="input-wrapper">
-              <ShieldCheck className="input-icon" size={18} />
+            <div className="inputContainer">
               <select
                 id="role"
                 name="role"
@@ -115,10 +110,9 @@ const Signup = () => {
             </div>
           </div>
 
-          <button type="submit" className="submit-btn" disabled={loading}>
+          <button type="submit" className="submitBtn" disabled={loading}>
             {loading ? 'Creating Account...' : (
               <>
-                <UserPlus size={18} />
                 <span>Sign Up</span>
               </>
             )}
